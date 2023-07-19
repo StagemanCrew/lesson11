@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task-0</title>
+</head>
+<body>
+    <h1>Знайти суми елементів у вказаній області (масиви розділені на 4 рівні частини) <br>
+        1) Суму елементів 1-ій, 2-ій, 3-ій та 4-ій частині.<br>
+        2) Суму парних рядків <br>
+        3) Суму непарних стовпців <br>
+        4) У парних рядках – непарні стовпці, у непарних – парні.</h1>
+
+    <script>
+
+        //1) ---------------Суму елементів 1-ій, 2-ій, 3-ій та 4-ій частині.----------------
+        //1. Вводимо даннi
+        let allStoresEarnings = [
+            [1,2,3,4,5,6,7],
+            [7,6,5,4,3,2,1],
+            [1,3,6,2,4,7,5],
+            [1,5,3,7,2,6,4],
+            [4,2,3,6,5,7,1],
+        ];
+        for (let shop = 0; shop < allStoresEarnings.length; shop++) {
+            document.write(`<h3>Shop ${shop + 1} week earnings: ${allStoresEarnings[shop]}</h3>`);
+        }
+
+        // ---------------------Перша частина-------------------
+        //2.Знаходимо результат
+        let workingDaysSumFirstHalf = 0
+        let firstPartRow = Math.floor(allStoresEarnings.length / 2)
+        let firstPartCol = Math.floor(allStoresEarnings[0].length / 2)
+
+        for (let shop = 0; shop < firstPartRow; shop++) {
+            for (let week = 0; week < firstPartCol; week++) {
+                workingDaysSumFirstHalf += allStoresEarnings[shop][week];
+            }
+        }
+
+        //3.Виводимо результат
+        document.write(`<h2>Перша половина тижня, та перша половина магазинів заробили: ${workingDaysSumFirstHalf}грн.</h2>`);
+
+        //====================================================================================================
+
+        // ---------------------Друга частина-------------------
+        // Знаходимо результат
+        let workingDaysSumSecondHalf = 0;
+        let secondHalfRow = Math.floor(allStoresEarnings.length / 2); // Друга половина рядків
+        let secondHalfCol = Math.floor(allStoresEarnings[0].length / 2); // Друга половина стовпців
+
+        for (let shop = 0; shop < secondHalfRow; shop++) {
+            for (let week = secondHalfCol; week < allStoresEarnings[shop].length; week++) {
+                workingDaysSumSecondHalf += allStoresEarnings[shop][week];
+            }
+        }
+
+        //3.Виводимо результат
+        document.write(`<h2>Друга половина тижня, та перша половина магазинів заробили: ${workingDaysSumSecondHalf}грн.</h2>`);
+
+        //========================================================================
+
+        // ---------------------Третя частина-------------------
+        // Знаходимо результат
+        let workingDaysSumThirdPart = 0;
+        for (let shop = firstPartRow; shop < allStoresEarnings.length; shop++) {
+            for (let week = 0; week < firstPartCol; week++) {
+                workingDaysSumThirdPart += allStoresEarnings[shop][week];
+            }
+        }
+
+        document.write(`<h2>Перша половина тижня, та друга половина магазинів заробили: ${workingDaysSumThirdPart}грн.</h2>`);
+
+        //========================================================================
+
+        // ---------------------Четверта частина-------------------
+        // Знаходимо результат
+        let workingDaysSumFourthPart = 0;
+        for (let shop = firstPartRow; shop < allStoresEarnings.length; shop++) {
+            for (let week = secondHalfCol; week < allStoresEarnings[shop].length; week++) {
+                workingDaysSumFourthPart += allStoresEarnings[shop][week];
+            }
+        }
+
+        document.write(`<h2>Друга половина тижня, та друга половина магазинів заробили: ${workingDaysSumFourthPart}грн.</h2>`);
+
+        //========================================================================
+        
+        //2) -----------------------------Суму парних рядків---------------------------
+        // Знаходимо результат
+        let evenRowSum = 0;
+        for (let shop = 1; shop < allStoresEarnings.length; shop += 2) {
+            for (let week = 0; week < allStoresEarnings[shop].length; week++) {
+                evenRowSum += allStoresEarnings[shop][week];
+            }
+        }
+
+        document.write(`<h2>Сума парних рядків: ${evenRowSum}грн.</h2>`);
+
+        //========================================================================
+
+        //3) ------------------------Суму непарних стовпців----------------
+        // Знаходимо результат
+        let oddColSum = 0;
+        for (let shop = 0; shop < allStoresEarnings.length; shop ++) {
+            for (let week = 0; week < allStoresEarnings[shop].length; week += 2) {
+                oddColSum += allStoresEarnings[shop][week];
+            }
+        }
+
+        document.write(`<h2>Сума непарних стовпців: ${oddColSum}грн.</h2>`);
+
+        //========================================================================
+        //4) У парних рядках – непарні стовпці, у непарних – парні.
+
+        // Знаходимо результат
+        let evenOddSum = 0;
+        for (let shop = 1; shop < allStoresEarnings.length; shop += 2) {
+            for (let week = 0; week < allStoresEarnings[shop].length; week += 2) {
+                evenOddSum += allStoresEarnings[shop][week];
+            }
+        }
+
+        let oddEvenSum = 0;
+        for (let shop = 0; shop < allStoresEarnings.length; shop += 2) {
+            for (let week = 1; week < allStoresEarnings[shop].length; week += 2) {
+                oddEvenSum += allStoresEarnings[shop][week];
+            }
+        }
+
+        document.write(`<h2>У парних рядках – непарні стовпці: ${evenOddSum}грн.</h2>`);
+        document.write(`<h2>У парних рядках – непарні стовпці: ${oddEvenSum}грн.</h2>`);
+
+    </script>
+</body>
+</html>

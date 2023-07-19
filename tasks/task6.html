@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task-6</title>
+</head>
+<body>
+    <h1>Дано інформацію про прибуток К магазинів протягом тижня. Знайти :</h1>
+    <h2>Сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200.</h2>
+
+    <script>
+
+        //1. Вводимо даннi
+        let allStoresEarnings = [
+            [10,20,300,40,500,60,70],
+            [700,60,50,400,30,20,10],
+            [100,300,60,20,400,70,50],
+            [10,555,333,75,26,67,48],
+            [444,222,37,68,542,723,12],
+        ];
+        for (let shop = 0; shop < allStoresEarnings.length; shop++) {
+            document.write(`<h3>Shop ${shop + 1} week earnings: ${allStoresEarnings[shop]}</h3>`);
+        }
+
+        //2.Знаходимо результат
+        let newAllStoresEarnings = []
+        for (let shop of allStoresEarnings) {
+            for (let item of shop) {
+                if (item > 200) {
+                newAllStoresEarnings.push(item);
+                }
+            }
+        }
+
+        //3.Виводимо результат
+        document.write(`<h3>Загальний список значень, які більші за 200:</h3><h2> ${newAllStoresEarnings}</h2>`);
+
+    </script>
+</body>
+</html>
